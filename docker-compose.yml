@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: admin_panel_web
+    env_file:
+      - .env
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --port=8000 --host=0.0.0.0"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/admin_panel_web
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - admin_panel
+
+
+  db:
+      restart: always
+      image: postgres:15-alpine
+      container_name: admin_panel_db
+      volumes:
+        - pg_volume:/var/lib/postgresql/data/
+      env_file:
+        - .env
+      ports:
+        - 5436:5432
+      networks:
+        - admin_panel
+      healthcheck:
+        test: ['CMD-SHELL', 'pg_isready']
+        interval: 5s
+        timeout: 5s
+        retries: 3
+
+
+volumes:
+  pg_volume:
+
+
+networks:
+  admin_panel:
+    driver: bridge

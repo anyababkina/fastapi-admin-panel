@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить запись</title>
+<body>
+<form action="/{{ table_name|lower }}/{{ record.id }}/" method="post">
+    <h1>Редактирование записи {{ table_name }}</h1>
+    <hr>
+    {% for column in columns %}
+        <p>{{ column }}:<br>
+        {% if column == 'password' %}
+            <input name="{{ column }}" type="password" />
+        {% else %}
+            <textarea name="{{ column }}" style="width:250px;height:150px;">{{ record[column] }}</textarea>
+        </p>
+        {% endif %}
+    {% endfor %}
+    <hr>
+    <input type="submit" value="Сохранить" />
+</form>
+</body>
+</html>

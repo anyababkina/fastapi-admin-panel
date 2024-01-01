@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ table_name }}</title>
+</head>
+<body>
+
+<h1>{{ table_name }}</h1>
+<p style="font-size:15px"><span style="float:right">
+    <button type="button"><a href="/{{ table_name|lower }}/instance">Создать новую запись</a></button>
+</span></p>
+
+<table>
+    <thead>
+    <tr>
+        {% for column in columns %}
+            {% if column in selected %}
+                <th>{{ column }}</th>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            {% for column in columns %}
+                <td><a href="/{{ table_name|lower }}/instances/{{ record.id }}">{{ record[column] }}</a></td>
+
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Колонки для показа</h2>
+    <form action="/{{ table_name|lower }}/instances" method="post">
+        {% for column in columns %}
+            <input type="checkbox" id="{{ column }}" name="checkbox" value="{{ column }}"
+                   {{ "checked" if column in selected else "" }}>{{ column}}<br>
+        {% endfor %}
+        <input type="submit" value="Сохранить">
+    </form>
+
+
+
+

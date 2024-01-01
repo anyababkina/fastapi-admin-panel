@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница регистрации</title>
+<body>
+<form action="/registration" method="post">
+    <h1>Регистрация</h1>
+    <p>Введите необходимые данные для регистрации в системе</p>
+    <hr>
+    <p>Email:<br>
+        <input name="email" />
+    </p>
+    <p>Логин:<br>
+        <input name="username" />
+    </p>
+    <p>Пароль:<br>
+            <input name="password" type="password" />
+        </p>
+    <hr>
+    <input type="submit" value="Регистрация" />
+    <p>Уже есть аккаунт?<a href="/login">Войти</a></p>
+</form>
+</body>
+</html>

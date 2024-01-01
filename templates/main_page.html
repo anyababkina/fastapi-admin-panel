@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+<h1><p align="center" style="font-size:30px">Админ-панель<span style="float:right">
+        <a href="">{{ admin.username }}</a>
+        <a href="/logout">Выход</a>
+</span></p></h1>
+
+ <ul>
+     {% for key, value in dashboard.items() %}
+     <li><strong><a href="/{{ key|lower }}/instances">{{ key }}</a></strong>: Всего элементов: {{ value }}</li>
+     {% endfor %}
+ </ul>
+
+
+</body>
+</html>

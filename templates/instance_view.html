@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ table_name }}</title>
+</head>
+<body>
+
+<h1>{{ table_name }}</h1>
+<table>
+    <thead>
+    <tr>
+        {% for column in columns %}
+            <th>{{ column }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for column in columns %}
+                <td>{{ record[column] }}</td>
+
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+<p style="font-size:15px"><span style="float:right">
+    <button type="button"><a href="/{{ table_name|lower }}/instance">Создать новую запись</a></button>
+    <button type="button"><a href="/{{ table_name|lower }}/{{ record.id }}">Редактировать запись</a></button>
+    <button type="button"><a href="/{{ table_name|lower }}/{{ record.id }}/delete">Удалить запись</a></button>
+</span></p>
+
+</body>
+</html>

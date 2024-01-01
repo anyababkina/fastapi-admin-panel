@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание записи</title>
+<body>
+<form action="/{{ table_name|lower }}/instance" method="post">
+    <h1>Создание записи {{ table_name }}</h1>
+    <hr>
+    {% for column in columns %}
+        <p>{{ column }}:<br>
+        {% if column == 'password' %}
+            <input name="{{ column }}" type="password" />
+        {% else %}
+            <textarea name="{{ column }}" style="width:250px;height:150px;"></textarea>
+        </p>
+        {% endif %}
+    {% endfor %}
+    <hr>
+    <input type="submit" value="Сохранить" />
+</form>
+</body>
+</html>
